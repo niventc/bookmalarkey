@@ -1,19 +1,26 @@
-<ul>
-  <li *ngFor="let bookmark of (bookmarks | async); trackBy: id">
-    <a [href]="bookmark.url">{{bookmark.title}}</a>
-    <ul>
-      <li *ngFor="let child of bookmark.children; trackBy: id">
-        <a [href]="child.url">{{child.title}}</a>
-          <div class="flex-grid">
-            <md-card *ngFor="let grandChild of child.children; trackBy: id"
-                      class="cell">
-              <md-card-title>
-                <a [href]="grandChild.url">{{grandChild.title}}</a>
-              </md-card-title>
-              <img *ngIf="isImage(grandChild)" md-card-image [src]="grandChild.url">
-            </md-card>
-          </div>
-      </li>
-    </ul>
-  </li>
-</ul>
+
+<div class="sidebar">
+  <md-icon>Recent</md-icon>
+</div>
+
+<div class="content">
+  <ul>
+    <li *ngFor="let bookmark of (bookmarks | async); trackBy: id">
+      <a [href]="bookmark.url">{{bookmark.id}}: {{bookmark.title}}</a>
+      <ul>
+        <li *ngFor="let child of bookmark.children; trackBy: id">
+          <a [href]="child.url">{{child.id}}: {{child.title}}</a>
+            <div class="flex-grid">
+              <md-card *ngFor="let grandChild of child.children; trackBy: id"
+                        class="cell">
+                <md-card-title>
+                  <a [href]="grandChild.url">{{grandChild.id}}: {{grandChild.title}}</a>
+                </md-card-title>
+                <img *ngIf="isImage(grandChild)" md-card-image [src]="grandChild.url">
+              </md-card>
+            </div>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>

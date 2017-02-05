@@ -15,6 +15,24 @@ Make Chrome bookmarks great again!
 9. ???
 10. Profit
 
+## Todo
+
+* Flatten bookmarks
+* Fetch metadata, SEO, keywords etc
+* Cache metadata
+* Refresh metadata
+* Search bookmarks
+* Delete bookmark
+* Edit bookmark
+* Create bookmark?
+* Multi select (for delete?)
+* Ordering
+* Youtube cleverness
+* Amazon cleverness
+* 9gag/imgur cleverness
+* icon
+* Actual extension popup window
+* AOT!
 
 This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.30.
 

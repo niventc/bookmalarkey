@@ -1,0 +1,31 @@
+@import '~@angular/material/core/theming/prebuilt/deeppurple-amber';
+
+.content {
+    margin-left: 150px;
+}
+
+.flex-grid {
+    display: flex; 
+    flex-wrap: wrap; 
+    word-break: break-all; 
+    word-wrap: break-word;
+    flex: 2 0 200px
+}
+
+.flex-grid .cell {
+    flex: 1 0 20%;
+    margin: 10px;
+    max-height: 300px;
+    overflow: hidden;
+}
+
+.sidebar {
+    width: 150px;
+    background-color: md-color($primary);
+    position: fixed;
+    height: 100%;
+    margin-top: -12px;
+    margin-left: -8px;
+    padding: 5px;
+    color: white;
+}
