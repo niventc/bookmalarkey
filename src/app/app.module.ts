@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
+import { BookmarkStore } from "./bookmarks/bookmark.store";
+
 import { AppComponent } from './app.component';
 
 @NgModule({
@@ -14,7 +16,9 @@ import { AppComponent } from './app.component';
     FormsModule,
     HttpModule
   ],
-  providers: [],
+  providers: [
+    BookmarkStore
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

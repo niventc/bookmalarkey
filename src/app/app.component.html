@@ -1,3 +1,15 @@
-<h1>
-  {{title}}
-</h1>
+<ul>
+  <li *ngFor="let bookmark of (bookmarks | async); trackBy: id">
+    <a [href]="bookmark.url">{{bookmark.title}}</a>
+    <ul>
+      <li *ngFor="let child of bookmark.children">
+        <a [href]="child.url">{{child.title}}</a>
+            <ul>
+              <li *ngFor="let grandChild of child.children">
+                <a [href]="grandChild.url">{{grandChild.title}}</a>
+              </li>
+            </ul>
+      </li>
+    </ul>
+  </li>
+</ul>

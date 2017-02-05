@@ -1,4 +1,5 @@
-
+import { Injectable, NgZone } from "@angular/core";
+import { Observable } from "rxjs";
 
 export interface chrome {
 
@@ -45,17 +46,32 @@ export interface BookmarkTreeNode {
 
 var chrome: chrome = (<any>window).chrome;
 
+@Injectable()
 export class BookmarkStore {
 
-    public bookmarks: BookmarkTreeNode[];
+    public bookmarks: Observable<BookmarkTreeNode[]>;
 
-    constructor() {
-        chrome.bookmarks.getTree(bookmarks => {
-            this.bookmarks = bookmarks;
-        });
+    constructor(
+        private _zone: NgZone
+    ) {
+        this.bookmarks = Observable
+            .timer(0, 10 * 1000)
+            .flatMap((v, i) => {
+                let obs = Observable.bindCallback(this.getBookmarks);
+                return obs();
+            })
+            .publishBehavior([])
+            .refCount();
+
+        this.getBookmarks = this.getBookmarks.bind(this);
     }
 
-
-
+    private getBookmarks(cb: (bookmarks: BookmarkTreeNode[]) => void): void {
+        chrome.bookmarks.getTree((x) => {
+            this._zone.run(() => {                
+                cb(x);
+            });
+        })
+    }
 }
 
