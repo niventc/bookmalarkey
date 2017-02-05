@@ -1,0 +1,14 @@
+.flex-grid {
+    display: flex; 
+    flex-wrap: wrap; 
+    word-break: break-all; 
+    word-wrap: break-word;
+    flex: 2 0 200px
+}
+
+.flex-grid .cell {
+    flex: 1 0 20%;
+    margin: 10px;
+    max-height: 300px;
+    overflow: hidden;
+}

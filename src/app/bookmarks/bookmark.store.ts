@@ -55,7 +55,7 @@ export class BookmarkStore {
         private _zone: NgZone
     ) {
         this.bookmarks = Observable
-            .timer(0, 10 * 1000)
+            .timer(0, 120 * 1000)
             .flatMap((v, i) => {
                 let obs = Observable.bindCallback(this.getBookmarks);
                 return obs();

@@ -22,4 +22,11 @@ export class AppComponent implements OnInit {
     this.bookmarks = this._bookmarkStore.bookmarks;
   }
 
+  public isImage(bookmark: BookmarkTreeNode): boolean {
+    return bookmark.url.endsWith(".png") ||
+           bookmark.url.endsWith(".gif") ||
+           bookmark.url.endsWith(".jpg") ||
+           bookmark.url.endsWith(".jpeg");
+  }
+
 }
