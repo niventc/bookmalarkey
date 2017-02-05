@@ -1,4 +1,20 @@
-# Bookmalarkey
+# Book Malarkey
+
+Make Chrome bookmarks great again!
+
+## Building
+
+1. Checkout this repo
+2. `npm install`
+3. `npm run build`
+4. Open Chrome and goto `chrome://extensions`
+5. Click `Load unpacked extension...`
+6. Navigate to the `dist` folder inside of the checkout
+7. Maybe `Developer mode` needs to be ticked?
+8. Click icon that appears in the navbar
+9. ???
+10. Profit
+
 
 This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.30.
 
