@@ -17,7 +17,7 @@ Make Chrome bookmarks great again!
 
 ## Todo
 
-* -Flatten bookmarks-
+* ~~Flatten bookmarks~~
 * Fetch metadata, SEO, keywords etc
 * Cache metadata
 * Refresh metadata
