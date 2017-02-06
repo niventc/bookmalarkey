@@ -1,6 +1,8 @@
 import { Injectable, NgZone } from "@angular/core";
 import { Observable } from "rxjs";
 
+import * as _ from "lodash";
+
 export interface chrome {
 
     bookmarks: BookmarkService;
@@ -60,10 +62,21 @@ export class BookmarkStore {
                 let obs = Observable.bindCallback(this.getBookmarks);
                 return obs();
             })
+            .map(bk => {
+                return this.flatten(bk[0]);
+            })
             .publishBehavior([])
             .refCount();
 
         this.getBookmarks = this.getBookmarks.bind(this);
+    }
+
+    private flatten(tree: BookmarkTreeNode): BookmarkTreeNode[] {
+        // No children just return self
+        if(!tree.children || tree.children.length === 0) {
+            return [tree];
+        }        
+        return _(tree.children).flatMap(x => this.flatten(x)).value();
     }
 
     private getBookmarks(cb: (bookmarks: BookmarkTreeNode[]) => void): void {
