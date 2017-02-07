@@ -3,14 +3,24 @@
   <md-icon>Recent</md-icon>
 </div>
 
-<div class="content">
+<div class="md-content content">
   <div class="flex-grid">
     <md-card *ngFor="let bookmark of (bookmarks | async); trackBy: id"
               class="cell">
-      <md-card-title>
-        <a [href]="bookmark.url">{{bookmark.id}}: {{bookmark.title}}</a>
-      </md-card-title>
-      <img *ngIf="isImage(bookmark)" md-card-image [src]="bookmark.url">
+      <div class="md-card-title" *ngIf="!isImage(bookmark)" >
+        <span class="md-card-title-text">
+          <span class="md-headline">{{bookmark.title}}</span>
+        </span>
+      </div>
+      <img *ngIf="isImage(bookmark)" class="md-card-image" [src]="bookmark.url">
+      <md-card-actions>
+        <a class="md-button" [href]="bookmark.url" target="_blank">
+          Open
+        </a>
+        <button md-button (click)="getMetadata(bookmark)">
+          Get Metadata
+        </button>
+      </md-card-actions>
     </md-card>
   </div>
 </div>

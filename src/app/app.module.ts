@@ -5,6 +5,7 @@ import { HttpModule } from '@angular/http';
 import { MaterialModule } from '@angular/material';
 
 import { BookmarkStore } from "./bookmarks/bookmark.store";
+import { MetadataProvider } from "./metadata.provider";
 
 import { AppComponent } from './app.component';
 
@@ -19,7 +20,8 @@ import { AppComponent } from './app.component';
     MaterialModule.forRoot()
   ],
   providers: [
-    BookmarkStore
+    BookmarkStore,
+    MetadataProvider
   ],
   bootstrap: [AppComponent]
 })

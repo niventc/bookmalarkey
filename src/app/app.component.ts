@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from "rxjs";
 
 import { BookmarkStore, BookmarkTreeNode } from "./bookmarks/bookmark.store";
+import { MetadataProvider } from "./metadata.provider";
 
 @Component({
   selector: 'app-root',
@@ -13,7 +14,8 @@ export class AppComponent implements OnInit {
   public bookmarks: Observable<BookmarkTreeNode[]>;
 
   constructor(
-    private _bookmarkStore: BookmarkStore
+    private _bookmarkStore: BookmarkStore,
+    private _metadataProvider: MetadataProvider
   ) {
 
   }
@@ -27,6 +29,13 @@ export class AppComponent implements OnInit {
            bookmark.url.endsWith(".gif") ||
            bookmark.url.endsWith(".jpg") ||
            bookmark.url.endsWith(".jpeg");
+  }
+
+  public getMetadata(bookmark: BookmarkTreeNode): void{
+    this._metadataProvider.getMetadata(bookmark.url)
+      .subscribe(x => {
+        
+      });
   }
 
 }
