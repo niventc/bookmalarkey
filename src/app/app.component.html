@@ -4,22 +4,27 @@
 </div>
 
 <div class="md-content content">
+  <md-input-container style="width: 100%">
+    <input md-input placeholder="Search" [ngModel]="searchTerm | async" (ngModelChange)="searchTerm.next($event)">
+  </md-input-container>
+
+
   <div class="flex-grid">
-    <md-card *ngFor="let bookmark of (bookmarks | async); trackBy: id"
+    <md-card *ngFor="let bookmark of (filteredBookmarks | async); trackBy: id"
               class="cell">
-      <div class="md-card-title" *ngIf="!isImage(bookmark)" >
-        <span class="md-card-title-text">
-          <span class="md-headline">{{bookmark.title}}</span>
-        </span>
-      </div>
-      <img *ngIf="isImage(bookmark)" class="md-card-image" [src]="bookmark.url">
+      <md-card-header *ngIf="!isImage(bookmark)" >
+        <md-card-title>
+          {{bookmark.title}}
+        </md-card-title>
+      </md-card-header >
+      <img *ngIf="isImage(bookmark)" md-card-image [src]="bookmark.url">
       <md-card-actions>
-        <a class="md-button" [href]="bookmark.url" target="_blank">
+        <a md-button [href]="bookmark.url" target="_blank">
           Open
         </a>
-        <button md-button (click)="getMetadata(bookmark)">
+        <!--<button md-button (click)="getMetadata(bookmark)">
           Get Metadata
-        </button>
+        </button>-->
       </md-card-actions>
     </md-card>
   </div>
