@@ -18,14 +18,17 @@ Make Chrome bookmarks great again!
 ## Todo
 
 * ~~Flatten bookmarks~~
-* Fetch metadata, SEO, keywords etc
+* Fetch metadata, SEO, keywords etc (requires a proxy CORS :()
 * Cache metadata
 * Refresh metadata
 * Search bookmarks
+* Archive bookmark
 * Delete bookmark
 * Edit bookmark
 * Create bookmark?
 * Multi select (for delete?)
+* ~~Filtering by name~~
+* Better filtering (using metadata, url, etc)
 * Ordering
 * Youtube cleverness
 * Amazon cleverness
