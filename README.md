@@ -18,6 +18,8 @@ Make Chrome bookmarks great again!
 ## Todo
 
 * ~~Flatten bookmarks~~
+* ~~Filter recent on toolbar~~
+* More toolbar?
 * Fetch metadata, SEO, keywords etc (requires a proxy CORS :()
 * Cache metadata
 * Refresh metadata
@@ -36,6 +38,7 @@ Make Chrome bookmarks great again!
 * icon
 * Actual extension popup window
 * AOT!
+* Animations
 
 This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.30.
 
