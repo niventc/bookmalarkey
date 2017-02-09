@@ -1,6 +1,9 @@
 
 <div class="sidebar">
-  <md-icon>Recent</md-icon>
+  <i class="fa fa-2x fa-bell" 
+     title="Recently Added" 
+     [class.selected]="doFilterRecent"
+     (click)="doFilterRecent = !doFilterRecent; filterRecent.next(doFilterRecent)"></i>
 </div>
 
 <div class="md-content content">
@@ -10,7 +13,7 @@
 
 
   <div class="flex-grid">
-    <md-card *ngFor="let bookmark of (filteredBookmarks | async); trackBy: id"
+    <md-card *ngFor="let bookmark of (filteredRecentBookmarks | async); trackBy: id"
               class="cell">
       <md-card-header *ngIf="!isImage(bookmark)" >
         <md-card-title>
@@ -22,6 +25,7 @@
         <a md-button [href]="bookmark.url" target="_blank">
           Open
         </a>
+        <span class="created-span">{{getAdded(bookmark)}}</span>
         <!--<button md-button (click)="getMetadata(bookmark)">
           Get Metadata
         </button>-->

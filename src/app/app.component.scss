@@ -1,7 +1,7 @@
 @import '~@angular/material/core/theming/prebuilt/deeppurple-amber';
 
 .content {
-    margin-left: 160px;
+    margin-left: 60px;
 }
 
 .flex-grid {
@@ -10,22 +10,39 @@
     word-break: break-all; 
     word-wrap: break-word;
     flex: 2 0 150px;
-}
 
-.flex-grid .cell {
-    flex: 1 0 15%;
-    margin: 10px;
-    max-height: 300px;
-    overflow: hidden;
+    .cell {
+        flex: 1 0 15%;
+        margin: 10px;
+        max-height: 300px;
+        overflow: hidden;
+
+        .created-span {
+            float: right;
+            padding: 11px;
+        }
+    }
 }
 
 .sidebar {
-    width: 150px;
+    width: 50px;
     background-color: md-color($primary);
     position: fixed;
     height: 100%;
     margin-top: -12px;
     margin-left: -8px;
     padding: 5px;
-    color: white;
+    box-shadow: 0 2px 2px 2px rgba(0,0,0,0.15);
+    text-align: center;
+
+    i {
+        color: rgba(255,255,255,1.0);
+        padding: 14px 0;
+        cursor: pointer;
+        text-shadow: 2px 2px 2px rgba(0,0,0,0.15);
+
+        &.selected {
+            color: rgba(255,255,255,0.8);
+        }
+    }
 }
