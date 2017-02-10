@@ -46,27 +46,34 @@ export class MetadataProvider {
         "value": "*"
     };
 
+    private cache: { [url: string]: Metadata } = {};
+
     constructor(
         private _http: Http
     ) {
-        
+
     }
 
-    public getMetadata(url: string): Observable<Metadata> {
-        return this._http.get(url)
-                        .map(x => {
-                            let parser = new DOMParser();
-                            let doc = parser.parseFromString(x.text(), "text/html");
-                            let metaElements = doc.getElementsByTagName("meta");
-                            
-                            let keywords = this.getKeywords(metaElements);
-                            let imageUrls = this.getImageUrls(metaElements);
+    public getMetadata(url: string, skipCache?: boolean): Observable<Metadata> {
+        if (this.cache[url] && !skipCache) {
+            return Observable.of(this.cache[url]);
+        }
 
-                            return <Metadata>{
-                                keywords: keywords,
-                                imageUrls: imageUrls
-                            };
-                        });
+        return this._http.get(url)
+            .map(x => {
+                let parser = new DOMParser();
+                let doc = parser.parseFromString(x.text(), "text/html");
+                let metaElements = doc.getElementsByTagName("meta");
+
+                let keywords = this.getKeywords(metaElements);
+                let imageUrls = this.getImageUrls(metaElements);
+
+                return <Metadata>{
+                    keywords: keywords,
+                    imageUrls: imageUrls
+                };
+            })
+            .do(x => this.cache[url] = x);
     }
 
     private getImageUrls(elements: NodeListOf<HTMLMetaElement>): string[] {
@@ -75,13 +82,13 @@ export class MetadataProvider {
             "twitter:image:src"
         ];
         let imageUrls: string[] = [];
-        for(let i = 0; i < elements.length; i++) {
+        for (let i = 0; i < elements.length; i++) {
             let element = elements[i];
 
             let key = this.getMetaKey(element);
-            if(key && _(metaTagNames).includes(key)) {
+            if (key && _(metaTagNames).includes(key)) {
                 let content = element.attributes.getNamedItem("content");
-                if(content) {
+                if (content) {
                     imageUrls.push(content.value);
                 }
             }
@@ -89,14 +96,14 @@ export class MetadataProvider {
         return imageUrls;
     }
 
-    private getMetaKey(element: HTMLMetaElement): string {        
+    private getMetaKey(element: HTMLMetaElement): string {
         let name = element.attributes.getNamedItem("name");
-        if(name) {
+        if (name) {
             return name.value;
         }
 
         let property = element.attributes.getNamedItem("property");
-        if(property) {
+        if (property) {
             return property.value;
         }
 
@@ -104,23 +111,23 @@ export class MetadataProvider {
     }
 
     private getKeywords(elements: NodeListOf<HTMLMetaElement>): string[] {
-        let keywords: string[] = [];        
-        for(let i = 0; i < elements.length; i++) {
+        let keywords: string[] = [];
+        for (let i = 0; i < elements.length; i++) {
             let element = elements[i];
 
             let key = this.getMetaKey(element);
-            if(key && key === "keywords") {
+            if (key && key === "keywords") {
                 let content = element.attributes.getNamedItem("content");
-                if(content) {
+                if (content) {
                     content.value.split(",")
-                                 .forEach(x => {
-                                     keywords.push(x.trim());
-                                 });
+                        .forEach(x => {
+                            keywords.push(x.trim());
+                        });
                 }
             }
         }
         return keywords;
     }
 
-    
+
 }

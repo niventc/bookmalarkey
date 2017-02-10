@@ -63,7 +63,8 @@ export class BookmarkStore {
                 return obs();
             })
             .map(bk => {
-                return this.flatten(bk[0]);
+                let flattened = this.flatten(bk[0]);
+                return flattened.filter(x => x.url.indexOf("chrome://") < 0);
             })
             .publishBehavior([])
             .refCount();

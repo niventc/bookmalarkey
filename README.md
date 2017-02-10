@@ -21,7 +21,8 @@ Make Chrome bookmarks great again!
 * ~~Filter recent on toolbar~~
 * More toolbar?
 * Fetch metadata, SEO, keywords etc (~~requires a proxy CORS :(~~ extension request listener FTW!)
-* Cache metadata
+* ~~Cache metadata~~
+* Cache metadata between page loads, also maybe a queue to get metadata requests...
 * Refresh metadata
 * Search bookmarks
 * Archive bookmark
