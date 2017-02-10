@@ -65,22 +65,4 @@ export class AppComponent implements OnInit {
       .refCount();
   }
 
-  public isImage(bookmark: BookmarkTreeNode): boolean {
-    return bookmark.url.endsWith(".png") ||
-           bookmark.url.endsWith(".gif") ||
-           bookmark.url.endsWith(".jpg") ||
-           bookmark.url.endsWith(".jpeg");
-  }
-
-  public getAdded(bookmark: BookmarkTreeNode): string {
-    return moment(bookmark.dateAdded).fromNow();
-  }
-
-  public getMetadata(bookmark: BookmarkTreeNode): void{
-    this._metadataProvider.getMetadata(bookmark.url)
-      .subscribe(x => {
-
-      });
-  }
-
 }

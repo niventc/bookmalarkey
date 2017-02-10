@@ -1,0 +1,16 @@
+<md-card-header *ngIf="!isImage()" >
+    <md-card-title>
+        {{bookmark.title}}
+    </md-card-title>
+</md-card-header >
+<img *ngIf="isImage()" md-card-image [src]="bookmark.url">
+<img *ngIf="hasMetadataImage()" md-card-image [src]="getMetadataImage()">
+<md-card-actions>
+    <a md-button [href]="bookmark.url" target="_blank">
+        Open
+    </a>
+    <button md-button (click)="getMetadata()">
+        Get Metadata
+    </button>
+    <span class="created-span">{{getAdded()}}</span>
+</md-card-actions>

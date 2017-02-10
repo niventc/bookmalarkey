@@ -20,7 +20,7 @@ Make Chrome bookmarks great again!
 * ~~Flatten bookmarks~~
 * ~~Filter recent on toolbar~~
 * More toolbar?
-* Fetch metadata, SEO, keywords etc (requires a proxy CORS :()
+* Fetch metadata, SEO, keywords etc (~~requires a proxy CORS :(~~ extension request listener FTW!)
 * Cache metadata
 * Refresh metadata
 * Search bookmarks

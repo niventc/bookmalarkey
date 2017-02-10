@@ -5,13 +5,15 @@ import { HttpModule } from '@angular/http';
 import { MaterialModule } from '@angular/material';
 
 import { BookmarkStore } from "./bookmarks/bookmark.store";
+import { BookmarkComponent } from "./bookmarks/bookmark.component";
 import { MetadataProvider } from "./metadata.provider";
 
 import { AppComponent } from './app.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    BookmarkComponent
   ],
   imports: [
     BrowserModule,

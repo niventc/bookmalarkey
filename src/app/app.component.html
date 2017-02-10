@@ -15,21 +15,7 @@
   <div class="flex-grid">
     <md-card *ngFor="let bookmark of (filteredRecentBookmarks | async); trackBy: id"
               class="cell">
-      <md-card-header *ngIf="!isImage(bookmark)" >
-        <md-card-title>
-          {{bookmark.title}}
-        </md-card-title>
-      </md-card-header >
-      <img *ngIf="isImage(bookmark)" md-card-image [src]="bookmark.url">
-      <md-card-actions>
-        <a md-button [href]="bookmark.url" target="_blank">
-          Open
-        </a>
-        <span class="created-span">{{getAdded(bookmark)}}</span>
-        <!--<button md-button (click)="getMetadata(bookmark)">
-          Get Metadata
-        </button>-->
-      </md-card-actions>
+      <bookmark [bookmark]="bookmark"></bookmark>
     </md-card>
   </div>
 </div>
