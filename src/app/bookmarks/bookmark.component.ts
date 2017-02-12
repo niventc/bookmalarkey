@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from "@angular/core";
 
-import { BookmarkTreeNode } from "./bookmark.store";
-import { MetadataProvider, Metadata } from "../metadata.provider";
+import { MetadataProvider, Metadata } from "../metadata/metadata.provider";
 
 import * as moment from "moment";
 
@@ -11,7 +10,7 @@ import * as moment from "moment";
 })
 export class BookmarkComponent implements OnInit {
 
-  @Input() public bookmark: BookmarkTreeNode;
+  @Input() public bookmark: chrome.bookmarks.BookmarkTreeNode;
 
   public metadata: Metadata;
 
@@ -39,7 +38,7 @@ export class BookmarkComponent implements OnInit {
       });      
   }
 
-  public isImage(bookmark: BookmarkTreeNode): boolean {
+  public isImage(bookmark: chrome.bookmarks.BookmarkTreeNode): boolean {
     return this.bookmark.url.endsWith(".png") ||
            this.bookmark.url.endsWith(".gif") ||
            this.bookmark.url.endsWith(".jpg") ||

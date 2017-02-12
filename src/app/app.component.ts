@@ -4,8 +4,8 @@ import { Observable, Subject } from "rxjs";
 
 import * as moment from "moment";
 
-import { BookmarkStore, BookmarkTreeNode } from "./bookmarks/bookmark.store";
-import { MetadataProvider } from "./metadata.provider";
+import { BookmarkStore } from "./bookmarks/bookmark.store";
+import { MetadataProvider } from "./metadata/metadata.provider";
 
 @Component({
   selector: 'app-root',
@@ -14,15 +14,15 @@ import { MetadataProvider } from "./metadata.provider";
 })
 export class AppComponent implements OnInit {
 
-  public bookmarks: Observable<BookmarkTreeNode[]>;
+  public bookmarks: Observable<chrome.bookmarks.BookmarkTreeNode[]>;
 
   public searchTerm: Subject<string>;
 
-  public filteredBookmarks: Observable<BookmarkTreeNode[]>;
+  public filteredBookmarks: Observable<chrome.bookmarks.BookmarkTreeNode[]>;
 
   public doFilterRecent: boolean = false;
   public filterRecent: Subject<boolean>;
-  public filteredRecentBookmarks: Observable<BookmarkTreeNode[]>;
+  public filteredRecentBookmarks: Observable<chrome.bookmarks.BookmarkTreeNode[]>;
 
   constructor(
     private _bookmarkStore: BookmarkStore,

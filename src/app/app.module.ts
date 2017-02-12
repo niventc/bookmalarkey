@@ -6,14 +6,17 @@ import { MaterialModule } from '@angular/material';
 
 import { BookmarkStore } from "./bookmarks/bookmark.store";
 import { BookmarkComponent } from "./bookmarks/bookmark.component";
-import { MetadataProvider } from "./metadata.provider";
+
+import { MetadataProvider } from "./metadata/metadata.provider";
+import { MetadataStatusComponent } from "./metadata/metadata-status.component";
 
 import { AppComponent } from './app.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    BookmarkComponent
+    BookmarkComponent,
+    MetadataStatusComponent
   ],
   imports: [
     BrowserModule,

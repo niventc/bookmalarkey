@@ -1,3 +1,4 @@
+// TODO typescript this!
 function responseListener(details) {
     var flag = false,
     rule = {
