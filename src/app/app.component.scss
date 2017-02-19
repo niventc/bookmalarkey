@@ -9,10 +9,10 @@
     flex-wrap: wrap; 
     word-break: break-all; 
     word-wrap: break-word;
-    flex: 2 0 150px;
+    flex: 0 0 150px;
 
     .cell {
-        flex: 1 0 15%;
+        flex: 0 0 15%;
         margin: 10px;
         //max-height: 300px;
         overflow: hidden;
