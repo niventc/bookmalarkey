@@ -1,6 +1,8 @@
 import { Injectable } from "@angular/core";
 import { Http } from "@angular/http";
-import { Observable, Subject } from "rxjs";
+import { Observable, Subject, BehaviorSubject } from "rxjs";
+
+import { MetadataCache } from "./metadata.cache";
 
 import * as _ from "lodash";
 
@@ -25,13 +27,13 @@ export class MetadataProvider {
     private _worker: Observable<number>;
 
     private _queue: MetadataRequest[] = [];
-    private _cache: { [url: string]: Metadata } = {};
 
     public inflightRequestCount: number = 0;
     public queueLength: Subject<number>;
 
     constructor(
-        private _http: Http
+        private _http: Http,
+        private _metadataCache: MetadataCache
     ) {
         this.queueLength = new Subject<number>();
 
@@ -60,18 +62,28 @@ export class MetadataProvider {
     }
 
     public getMetadata(url: string, skipCache?: boolean): Observable<Metadata> {
-        if (this._cache[url] && !skipCache) {
-            return Observable.of(this._cache[url]);
+        let subject = new BehaviorSubject<Metadata>(null);
+        
+        if (!skipCache) {
+            this._metadataCache.get(url, subject);
+
+            return subject
+                .do(x => {
+                    if(!x) {
+                        this.enqueueMetadataRequest(url, subject);
+                    }
+                });
         }
 
-        let subject = new Subject<Metadata>();
+        this.enqueueMetadataRequest(url, subject);
+        return subject;
+    }
 
+    private enqueueMetadataRequest(url: string, subject: Subject<Metadata>): void {
         this._queue.push({
             url: url,
             returnSubject: subject
         });
-
-        return subject;
     }
 
     private getRemoteMetadata(url: string): Observable<Metadata> {        
@@ -95,7 +107,7 @@ export class MetadataProvider {
                     imageUrls: []
                 });
             })
-            .do(x => this._cache[url] = x);
+            .do(x => this._metadataCache.set(url, x));
     }
 
     private getImageUrls(elements: NodeListOf<HTMLMetaElement>): string[] {
@@ -111,7 +123,13 @@ export class MetadataProvider {
             if (key && _(metaTagNames).includes(key)) {
                 let content = element.attributes.getNamedItem("content");
                 if (content) {
-                    imageUrls.push(content.value);
+                    let imageUrl = content.value;
+                    
+                    if(imageUrl.startsWith("//")) {
+                        imageUrl = `http:${imageUrl}`;
+                    }
+
+                    imageUrls.push(imageUrl);
                 }
             }
         }

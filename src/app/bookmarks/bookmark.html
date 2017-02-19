@@ -2,15 +2,15 @@
     <md-card-title>
         {{bookmark.title}}
     </md-card-title>    
-    <button md-button (click)="refreshMetadata()" title="Refresh Metadata">
-        <i class="fa fa-refresh"></i>
-    </button>
 </md-card-header >
 <img *ngIf="isImage()" md-card-image [src]="bookmark.url">
 <img *ngIf="hasMetadataImage()" md-card-image [src]="getMetadataImage()">
 <md-card-actions>
     <a md-button [href]="bookmark.url" target="_blank">
         Open
-    </a>
+    </a>    
+    <button md-button (click)="refreshMetadata()" title="Refresh Metadata">
+        <i class="fa fa-refresh"></i>
+    </button>
     <span class="created-span">{{getAdded()}}</span>
 </md-card-actions>

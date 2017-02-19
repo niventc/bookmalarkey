@@ -9,6 +9,7 @@ import { BookmarkComponent } from "./bookmarks/bookmark.component";
 
 import { MetadataProvider } from "./metadata/metadata.provider";
 import { MetadataStatusComponent } from "./metadata/metadata-status.component";
+import { MetadataCache } from "./metadata/metadata.cache";
 
 import { AppComponent } from './app.component';
 
@@ -26,7 +27,8 @@ import { AppComponent } from './app.component';
   ],
   providers: [
     BookmarkStore,
-    MetadataProvider
+    MetadataProvider,
+    MetadataCache
   ],
   bootstrap: [AppComponent]
 })

@@ -2,13 +2,29 @@
 export = chrome;
 export as namespace chrome;
 
-declare var chrome: chrome.ChromeService;
+//declare var chrome: chrome.ChromeService;
 
 declare namespace chrome {
 
     interface ChromeService {
-        bookmarks: bookmarks.BookmarkService;        
+        bookmarks: bookmarks.BookmarkService;       
+        storage: storage.StorageService; 
         webRequest: webRequests.WebRequestService;
+    }
+
+    namespace storage {
+        interface StorageService {
+            local: StorageArea;
+            sync: StorageArea;
+        }
+
+        class StorageArea {
+            get(keys: string | string[] | any, callback: (items: any) => void): void;
+            getBytesInUse(keys: string | string[], callback: (bytesInUse: number) => void): void;
+            set(items: { [key: string]: any}, callback?: () => void): void;
+            remove(keys: string | string[], callback?: () => void): void;
+            clear(callback?: () => void): void;
+        }
     }
     
     namespace bookmarks {

@@ -22,8 +22,11 @@ Make Chrome bookmarks great again!
 * More toolbar?
 * Fetch metadata, SEO, keywords etc (~~requires a proxy CORS :(~~ extension request listener FTW!)
 * ~~Cache metadata~~
-* Cache metadata between page loads, also maybe a queue to get metadata requests...
-* Refresh metadata
+* ~~Cache metadata between page loads, also maybe a queue to get metadata requests...~~
+* Better metadata queuing
+* ~~Refresh metadata~~
+* Metadata is link broken? Use cached site?
+* Edit metadata
 * Search bookmarks
 * Archive bookmark
 * Delete bookmark
@@ -40,6 +43,7 @@ Make Chrome bookmarks great again!
 * Actual extension popup window
 * AOT!
 * Animations
+* Masonry!
 
 This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.30.
 
